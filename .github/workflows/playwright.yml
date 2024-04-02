@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      run: npx playwright install --with-deps 
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
@@ -30,8 +30,8 @@ jobs:
       shell: bash
       run: |
         REPORT_DIR='run-${{ github.run_id }}-${{ github.run_attempt }}'
-        azcopy cp --recursive "./playwright-report/*" "https://vivektesting544.blob.core.windows.net/content/$REPORT_DIR"
-        echo "::notice title=HTML report url::https://vivektesting544.blob.core.windows.net/content/$REPORT_DIR/index.html"
+        azcopy cp --recursive "./playwright-report/*" "https://testingplaywrightreports.blob.core.windows.net/reports/$REPORT_DIR"
+        echo "::notice title=HTML report url::https://testingplaywrightreports.blob.core.windows.net/reports/$REPORT_DIR/index.html"
       env:
         AZCOPY_AUTO_LOGIN_TYPE: SPN
         AZCOPY_SPA_APPLICATION_ID: '${{ secrets.AZCOPY_SPA_APPLICATION_ID }}'
